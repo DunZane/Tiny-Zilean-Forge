@@ -159,13 +159,13 @@ The part covered by the yellow area is the generated drift segment
 
 The current Tiny-Zilean-Forge is the initial version of Zilean-Forge. In the future, more factors will be added to it, hoping that the simulation will be more realistic.
 
--[ ] based on containerization
+- [ ] based on containerization
 
--[ ] Multidimensional indicators
+- [ ] Multidimensional indicators
 
--[ ] Based on event driven drift rather than simulation
+- [ ] Based on event driven drift rather than simulation
 
--[ ] ....
+- [ ] ....
 
 
 # Disclaimer
