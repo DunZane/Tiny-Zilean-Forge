@@ -1,0 +1,18 @@
+settings:
+  drift_gen:
+    drift_category: ["Sudden", "Blip", "Recurrent", "Incremental", "Gradual"]  # 漂移类型列表
+    drift_mode: ["transmitted drift", "independent drift"]  # 漂移模式列表
+    blip:
+      - duration_lower_bound_seconds: 20  # Blip漂移的持续时间下限（单位：秒）
+        duration_higher_bound_seconds: 30  # Blip漂移的持续时间上限（单位：秒）
+    recurrent:
+      - duration_lower_bound_seconds: 150  # Recurrent漂移的持续时间下限（单位：秒）
+        duration_higher_bound_seconds: 300  # Recurrent漂移的持续时间上限（单位：秒）
+    incremental:
+      - amount_lower_bound: 15  # Incremental漂移的片段个数下限
+        amount_higher_bound: 20  # Incremental漂移的片段个数上限
+      - time_fragment_lower_seconds: 10  # Incremental漂移的时间片段下限（单位：秒）
+        time_fragment_higher_seconds: 15  # Incremental漂移的时间片段上限（单位：秒）
+    gradual:
+      - time_fragment_lower_seconds: 3  # Gradual漂移的时间片段下限（单位：秒）
+        time_fragment_higher_seconds: 6  # Gradual漂移的时间片段上限（单位：秒）

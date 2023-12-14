@@ -1,0 +1,19 @@
+settings:
+  shell_gen:
+    command_prefix: [ 'stress-ng', '-c', '2' ]
+    time_scale: [10,20,30,40]
+    sudden_cpu_variation_range_percentage:
+      - lower: 10
+        higher: 30
+    blip_cpu_variation_range_percentage:
+      - lower: 30
+        higher: 40
+    recurrent_cpu_variation_range_percentage:
+      - lower: 40
+        higher: 50
+    incremental_cpu_variation_range_percentage:
+      - lower: 40
+        higher: 50
+    gradual_cpu_variation_range_percentage:
+      - lower: 20
+        higher: 30

@@ -1,0 +1,21 @@
+settings:
+  shell_gen:
+    command_prefix: ['stress-ng', '--vm', '2']  # 运行命令的前缀列表
+    time_scale: [10,20,30,40]
+    sudden_mem_variation_range_percentage: # Sudden漂移MEM变化范围百分比
+      - lower: 0.1
+        higher: 0.5
+    blip_mem_variation_range_percentage: # Blip漂移MEM变化范围百分比
+      - lower: 0.3
+        higher: 0.5
+    recurrent_mem_variation_range_percentage: # Recurrent漂移MEM变化范围百分比
+      - lower: 0.2
+        higher: 0.3
+    incremental_mem_variation_range_percentage: # Incremental漂移MEM变化范围百分比
+      - lower: 0.2
+        higher: 0.5
+    gradual_mem_variation_range_percentage: # Gradual漂移MEM变化范围百分比
+      - lower: 0.2
+        higher: 0.5
+
+

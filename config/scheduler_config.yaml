@@ -1,0 +1,15 @@
+settings:
+  scheduler:
+    new_distribution_time_span: # 独立分布持续时间范围（单位为s）
+      - lower: 1200
+        higher: 1800
+    father_sub_interval: 1200  # 主漂移与子漂移之间间隔（单位为s）
+    sub_drift: # 位于主漂移上子漂移个数范围（单位个）
+      - lower: 3
+        higher: 5
+    event_interval: # 主漂移之间的隔离（单位s）
+      - lower: 1200
+        higher: 1800
+    sub_event_interval: # 子漂移与子漂移之间的隔离（单位s）
+      - lower: 1200
+        higher: 1800

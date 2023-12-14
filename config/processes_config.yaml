@@ -1,0 +1,19 @@
+settings:
+  shell_gen:
+    command_prefix: [ 'stress-ng', '--fork']  # 运行命令的前缀列表
+    time_scale: [10,20,30]
+    sudden_thread_variation_range_percentage: # Sudden漂移进程数变化范围百分比
+      - lower: 0.1
+        higher: 0.3
+    blip_thread_variation_range_percentage: # Blip漂移进程数变化范围百分比
+      - lower: 0.4
+        higher: 0.5
+    recurrent_thread_variation_range_percentage: # Recurrent漂移进程数变化范围百分比
+      - lower: 0.2
+        higher: 0.5
+    incremental_thread_variation_range_percentage: # Incremental漂移进程数变化范围百分比
+      - lower: 0.2
+        higher: 0.5
+    gradual_thread_variation_range_percentage: # Gradual漂移进程数变化范围百分比
+      - lower: 0.2
+        higher: 0.5
