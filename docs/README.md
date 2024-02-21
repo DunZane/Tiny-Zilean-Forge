@@ -6,7 +6,7 @@ Zilean-Forge是一个面向时间序列数据概念漂移生成的平台。
 <img src="data.png" alt="">
 
 # Architecture
-<img src="ZForge.png"  alt=""/>
+<img src="pic/ZForge.png"  alt=""/>
 Tiny-Zilean-Forge包含4台主机，其中一台作为数据保存机器，其余作为采集数据机器。
 作为独立版本，非常不推荐将数据存储在采集系统指标数据的机器上。指标采集的机器可以根据需要自由伸缩。详细的机器信息如下：
 
@@ -52,10 +52,46 @@ Tiny-Zilean-Forge包含4台主机，其中一台作为数据保存机器，其�
 例如,可以通过逐步增加CPU压力的方式产生渐进漂移;通过暂停压力然后突然恢复来产生突发漂移;通过周期性地切换不同的压力模式来产生周期性漂移。
 压力的大小、持续时间、组合和调度方式都可以通过python脚本进行编程控制。
 
-- python：version 3.8
-- stress-ng: version 0.09.50
+# 从该平台获取到不同概念漂移类型
+本文对不同的概念漂移类型进行了说明，事实上，很多文献已经对它们进行了大量的详细研究。为了更好地帮助理解，下面给出了该平台上的一些不同类型的漂移、 
+很明显，相同类型的漂移在形状上存在一些差异、 而不同类型的漂移之间又有一些相似之处，这些将成为主要的分类难题。
+- Sudden
+<div style="display: flex;">
+    <img src="pic/Sudden-1.png" alt="Sample 1" style="flex: 1; margin-right: 5px; width: 100px; height: auto;">
+    <img src="pic/Sudden-2.png" alt="Sample 2" style="flex: 1; margin-right: 2px;width: 100px;">
+    <img src="pic/Sudden-3.png" alt="Sample 3" style="flex: 1; width: 100px; height: auto;">
+</div>
 
-在论文中所需要的指标
+- Blip
+<div style="display: flex;">
+    <img src="pic/Blip-1.png" alt="Sample 1" style="flex: 1; margin-right: 5px; width: 100px; height: auto;">
+    <img src="pic/Blip-2.png" alt="Sample 2" style="flex: 1; margin-right: 2px;width: 100px;">
+    <img src="pic/Blip-3.png" alt="Sample 3" style="flex: 1; width: 100px; height: auto;">
+</div>
+
+- Recurrent
+<div style="display: flex;">
+    <img src="pic/Recurrent-1.png" alt="Sample 1" style="flex: 1; margin-right: 5px; width: 100px; height: auto;">
+    <img src="pic/Recurrent-2.png" alt="Sample 2" style="flex: 1; margin-right: 2px;width: 100px;">
+    <img src="pic/Recurrent-3.png" alt="Sample 3" style="flex: 1; width: 100px; height: auto;">
+</div>
+
+- Incremental
+<div style="display: flex;">
+    <img src="pic/Incremental-1.png" alt="Sample 1" style="flex: 1; margin-right: 5px; width: 100px; height: auto;">
+    <img src="pic/Incremental-2.png" alt="Sample 2" style="flex: 1; margin-right: 2px;width: 100px;">
+    <img src="pic/Incremental-3.png" alt="Sample 3" style="flex: 1; width: 100px; height: auto;">
+</div>
+
+- Gradual
+<div style="display: flex;">
+    <img src="pic/Gradual-1.png" alt="Sample 1" style="flex: 1; margin-right: 5px; width: 100px; height: auto;">
+    <img src="pic/Gradual-2.png" alt="Sample 2" style="flex: 1; margin-right: 2px;width: 100px;">
+    <img src="pic/Gradual-3.png" alt="Sample 3" style="flex: 1; width: 100px; height: auto;">
+</div>
+
+
+
 
 # 文件说明
 
@@ -119,7 +155,7 @@ config模块下主要提供了不同类型以及生成器、调度器的一些�
   nohup ./mem_shell.sh
   ```
 - 通过influxDB Web UI下载数据数据采集
-<img src="docs/pic/data_page.png"  alt=""/>
+<img src="pic/data_page.png"  alt=""/>
 
 论文接受后，完整部署细节文档将可以下载
 
@@ -127,22 +163,22 @@ config模块下主要提供了不同类型以及生成器、调度器的一些�
 # 采集数据展示
 - Zilean-Forge-Room-CPU --->  cpu ---> usage_user ---> cpu-total
 <figure class="half">
-    <img src="cpu-01.png" width=900 alt="">
-    <img src="cpu-02.png" width=900 alt="">
+    <img src="pic/cpu-01.png" width=900 alt="">
+    <img src="pic/cpu-02.png" width=900 alt="">
 </figure>
 
 
 - Zilean-Forge-Room-MEM --->  mem ---> available
 <figure class="half">
-    <img src="mem-01.png" width=900 alt="">
-    <img src="mem-02.png" width=900 alt="">
+    <img src="pic/mem-01.png" width=900 alt="">
+    <img src="pic/mem-02.png" width=900 alt="">
 </figure>
 
 
 - Zilean-Forge-Room-Processes ---> processes ---> total
 <figure class="half">
-    <img src="processes-01.png" width=900 alt="">
-    <img src="processes-02.png" width=900 alt="">
+    <img src="pic/processes-01.png" width=900 alt="">
+    <img src="pic/processes-02.png" width=900 alt="">
 </figure>
 
 
