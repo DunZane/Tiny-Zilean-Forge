@@ -1,5 +1,5 @@
 # Tiny-Zilean-Forge
-[English|[Chinese](docs/pic/README.md)]
+[English|[Chinese](docs/README.md)]
 
 Zilean-Forge is a platform for concept drift generation of time series data.
 At present, the core principle is to use the stress-ng tool to generate commands for stress testing Linux servers, and use pyhton to create a scheduler to reasonably schedule these commands so that different conceptual drift types can be formed on the server's system indicators, including: Burst, incremental, gradual, etc.
@@ -60,12 +60,52 @@ This warehouse provides a Tiny version that users can quickly build and use with
   stress-ng: version 0.09.50
   ```
   
-# Drift generation logic
+# Drift type generation logic
 In order to generate various concept drifts, Zilean-Forge uses stress-ng, a stress testing tool, to create different forms of load on the server.
 Currently, the platform currently provides simulation of CPU and memory. Zilean-Forge calls stress-ng through a python script and controls a series of scheduling logic such as its start, stop, combination and superposition, etc.
 This results in different types of drift such as graduated/incremental (progressive), sudden (burst), recurrent (periodic), etc.
 For example, progressive drift can be produced by gradually increasing CPU pressure; burst drift can be produced by pausing pressure and then suddenly resuming; and periodic drift can be produced by periodically switching between different pressure modes.
 The size, duration, combination and scheduling of pressure can all be controlled programmatically through python scripts.
+
+# Drift type from this platform
+In the paper, different conceptual drift types are illustrated, in fact, a lot of work has been done on them in detail, 
+and in order to better aid the understanding, some of the different types of drifts from this platform are given below, 
+and it is clear that there are some shape differences between the same types of drifts, 
+while the different types of drifts show some similarities to each other, and these will serve as the main categorization challenges.
+- Sudden
+<div style="display: flex;">
+    <img src="docs/pic/Sudden-1.png" alt="Sample 1" style="flex: 1; margin-right: 5px; width: 100px; height: auto;">
+    <img src="docs/pic/Sudden-2.png" alt="Sample 2" style="flex: 1; margin-right: 2px;width: 100px;">
+    <img src="docs/pic/Sudden-3.png" alt="Sample 3" style="flex: 1; width: 100px; height: auto;">
+</div>
+
+- Blip
+<div style="display: flex;">
+    <img src="docs/pic/Blip-1.png" alt="Sample 1" style="flex: 1; margin-right: 5px; width: 100px; height: auto;">
+    <img src="docs/pic/Blip-2.png" alt="Sample 2" style="flex: 1; margin-right: 2px;width: 100px;">
+    <img src="docs/pic/Blip-3.png" alt="Sample 3" style="flex: 1; width: 100px; height: auto;">
+</div>
+
+- Recurrent
+<div style="display: flex;">
+    <img src="docs/pic/Recurrent-1.png" alt="Sample 1" style="flex: 1; margin-right: 5px; width: 100px; height: auto;">
+    <img src="docs/pic/Recurrent-2.png" alt="Sample 2" style="flex: 1; margin-right: 2px;width: 100px;">
+    <img src="docs/pic/Recurrent-3.png" alt="Sample 3" style="flex: 1; width: 100px; height: auto;">
+</div>
+
+- Incremental
+<div style="display: flex;">
+    <img src="docs/pic/Incremental-1.png" alt="Sample 1" style="flex: 1; margin-right: 5px; width: 100px; height: auto;">
+    <img src="docs/pic/Incremental-2.png" alt="Sample 2" style="flex: 1; margin-right: 2px;width: 100px;">
+    <img src="docs/pic/Incremental-3.png" alt="Sample 3" style="flex: 1; width: 100px; height: auto;">
+</div>
+
+- Gradual
+<div style="display: flex;">
+    <img src="docs/pic/Gradual-1.png" alt="Sample 1" style="flex: 1; margin-right: 5px; width: 100px; height: auto;">
+    <img src="docs/pic/Gradual-2.png" alt="Sample 2" style="flex: 1; margin-right: 2px;width: 100px;">
+    <img src="docs/pic/Gradual-3.png" alt="Sample 3" style="flex: 1; width: 100px; height: auto;">
+</div>
 
 # File description
 ```text
