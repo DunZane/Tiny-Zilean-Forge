@@ -1,60 +1,62 @@
 #!/bin/bash
 
-# 确保没有该python进程
+# Ensure no other instance of the Python script is running
 if pgrep -f "/root/anaconda3/envs/DL/bin/python3.8 main.py --metric mem" > /dev/null; then
   echo "Another instance of the process is already running. Exiting."
   exit 1
 fi
 
-
-# 获取当前可读的时间
+# Get current readable timestamp
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 
-# 设置Zilean-Forge的目录
+# Set Zilean-Forge directories
 forge_dir="/root/PycharmProjects/Tiny-Zilean-Forge"
 logs_dir="$forge_dir/logs"
 config_dir="$forge_dir/config"
 storage_dir="$forge_dir/storage"
 
-# 如果logs文件夹不存在则创建
-if [ ! -d "$logs_dir" ]; then
-  mkdir -p "$logs_dir"
-fi
+# Create directories if they don't exist
+mkdir_if_not_exists() {
+  if [ ! -d "$1" ]; then
+    mkdir -p "$1" || { echo "Failed to create directory: $1"; exit 1; }
+  fi
+}
 
-# 如果config文件夹不存在则创建
-if [ ! -d "$config_dir" ]; then
-  mkdir -p "$config_dir"
-fi
+# Create necessary directories
+mkdir_if_not_exists "$logs_dir"
+mkdir_if_not_exists "$config_dir"
+mkdir_if_not_exists "$storage_dir"
 
-# 如果storage文件夹不存在则创建
-if [ ! -d "$storage_dir" ]; then
-  mkdir -p "$storage_dir"
-fi
+# Change to the appropriate directory
+cd "$forge_dir" || { echo "Failed to change directory: $forge_dir"; exit 1; }
 
-# 切换到合适的目录
-cd "$forge_dir"
+# Define cleanup actions when the script exits
+cleanup() {
+  pkill stress-ng  # Kill stress-ng process
+}
 
-# 添加trap命令，当脚本退出时执行指定操作
-trap "pkill stress-ng" EXIT
+# Trap EXIT signal to execute cleanup function
+trap cleanup EXIT
 
-# 定义函数，用于检测并重新启动 Python 脚本
+# Define function to start Python script
 start_python_script() {
   while true; do
+    # Start Python script in background
     /root/anaconda3/envs/DL/bin/python3.8 main.py --metric mem &
-    python_pid=$!  # 获取Python进程的PID
-    wait $python_pid  # 等待Python进程结束
-    python_exit_status=$?  # 保存Python进程的退出状态
+    python_pid=$!  # Get Python process PID
+    wait $python_pid  # Wait for Python process to finish
+    python_exit_status=$?  # Save Python process exit status
     if [ $python_exit_status -eq 0 ]; then
       break
     else
       echo "Python script exited with an error. Restarting in 5 minutes..."
-      # 清除可能的残余程序
+      # Cleanup residual processes
+      pkill -f "/root/anaconda3/envs/DL/bin/python3.8 main.py --metric mem"
       pkill stress-ng
-      pkill python
-      sleep 300
+      sleep 300  # Wait 5 minutes before restarting
     fi
   done
 }
 
-# 启动 Python 脚本
+# Start Python script
 start_python_script
