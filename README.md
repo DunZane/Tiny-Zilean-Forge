@@ -207,6 +207,8 @@ The current Tiny-Zilean-Forge is the initial version of Zilean-Forge. In the fut
 
 - [ ] ....
 
+<img src="docs/pic/Kubernetes_Version-2024-07-01-132512.png">
+coming soon
 
 # Disclaimer
 
